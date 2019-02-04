@@ -2,7 +2,7 @@ const SlackBot = require('slackbots');
 const axios = require('axios');
 
 const bot = new SlackBot ({
-    token: 'xoxb-541256475777-541814049811-KWv2ZNYrlM47VP5oL2oTo5zw',
+    token: 'xoxb-541256475777-541814049811-oSy5j3ofq7XtBvWII8o2kE1a',
     name: 'AbdealiBot'
 });
 
@@ -22,21 +22,14 @@ bot.on('error', (err)=> {
 
 // message handler
 bot.on('message', (data)=> {
-    if (data !== 'message') {
+    if (data.type !== 'message') {
         return;
     }
-
-    handleQuestion(data.text);
-});
-
-// echo the question back
-function handleQuestion(question) {
+    console.log(data);
     const params = {
         icons_emoji: 'smiley'
     }
-    if(question.includes('?')) {
-        bot.postMessageToChannel('assignment-1', question, params);
-    } else {
-        bot.postMessageToChannel('assignment-1', 'Not a question, so I\'m ignoring you', params);
+    if (data.text.includes('?') && data.username !== 'AbdealiBot') {
+        bot.postMessageToChannel('assignment-1', data.text, params);
     }
-}
+});
