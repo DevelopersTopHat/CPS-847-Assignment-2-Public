@@ -1,0 +1,23 @@
+{
+  "name": "cps-847-assignment-1",
+  "version": "1.0.0",
+  "description": "Slackbot that echos back questions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/issamjrfadel/CPS-847-Assignment-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/issamjrfadel/CPS-847-Assignment-1/issues"
+  },
+  "homepage": "https://github.com/issamjrfadel/CPS-847-Assignment-1#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "slackbots": "^1.2.0"
+  }
+}
