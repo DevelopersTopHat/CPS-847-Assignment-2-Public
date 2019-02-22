@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -28,4 +29,10 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to my-app2!');
   });
+
+  it('#titleChanger should change the title to User', () => {
+    const component = new AppComponent;
+    component.titleChanger();
+    expect(component.title).toBe('User');
+  })
 });
