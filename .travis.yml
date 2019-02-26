@@ -1,3 +1,18 @@
-language: node_js
 before_install:
-  - cd Assignment-1
+	- openssl aes-256-cbc -K $encrypted_f0a1a10e8e8f_key -iv $encrypted_f0a1a10e8e8f_iv -in deploy_rsa.enc -out deploy_rsa -d
+addons:
+	ssh_known_hosts: moon.scs.ryerson.ca
+before_deploy:
+	- openssl aes-256-cbc
+		-K $encrypted_f0a1a10e8e8f_key -iv $encrypted_f0a1a10e8e8f_iv
+		-in deploy_rsa.enc -out /tmp/deploy_rsa -d
+	- eval "$(ssh-agent -s)"
+	- chmod 600 /tmp/deploy_rsa
+	- ssh-add /tmp/deploy_rsa
+deploy:
+	provider: script
+	skip_cleanup: truescript: rsync-r --delete-after --quiet 
+		${TRAVIS_BUILD_DIR}/ci_play
+		adaginaw@moon.scs.ryerson.ca:/home/avm/courses/cps847/adaginaw
+	on:
+		branch: master
